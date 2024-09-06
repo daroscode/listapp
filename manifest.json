@@ -1,0 +1,41 @@
+{
+    "name": "Listapp",
+    "short_name": "Listapp",
+    "start_url": ".",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#FFFFFF",
+    "theme_color": "#FFFFFF",
+    "icons":[
+      {
+        "src": "img/96x96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      },
+      {
+        "src": "img/144x144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      },
+      {
+        "src": "img/256x256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+      },
+      {
+        "src": "img/512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      },
+      {
+        "src": "img/arrow_up.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      },
+      {
+        "src": "img/arrow_down.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
