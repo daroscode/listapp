@@ -1,12 +1,31 @@
-table tr td {
-    vertical-align: middle;
+#listapp-header {
+    position: fixed;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
 }
 
-td button {
-    margin: 5px;
+#listapp-header h1 {
+    width: 100%;
 }
-td button i {
-    font-size: 20px;
+
+#listapp-header button {
+    margin-right: 10px;  
+}
+
+#itemCards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 40px;
+}
+
+#itemCards .card {
+    flex: 1 0 60%;
+    margin-top: 20px;
+    cursor: pointer;
+    box-shadow: 0px 0pc 1px 1px;
 }
 
 .modal-header {
@@ -14,7 +33,9 @@ td button i {
     color: #FFF;
 }
 
-.modal-body {}
+.modal-body {
+    margin-top: 20px;
+}
 
 .modal-body form {
     display: flex;
@@ -24,9 +45,7 @@ td button i {
 }
 
 .modal-body form .inputField {
-    flex-basis: 68%;
-    border-left: 5px groove blue;
-    padding-left: 20px;
+    flex-basis: 100%;
 }
 
 form .inputField > div {
@@ -35,11 +54,20 @@ form .inputField > div {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    align-items: end;
 }
 
 form .inputField > div label {
     font-size: 20px;
     font-weight: 500;
+}
+
+form .inputField .card-title,
+form .inputField .card-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
 }
 
 #itemAdd form .inputField > div label::after {
@@ -54,7 +82,7 @@ form .inputField > div textarea {
     border: none;
     outline: none;
     background: transparent;
-    border-bottom: 2px solid blue;
+    border-bottom: 2px solid #0d6efd;
 }
 
 .modal-footer .submit {

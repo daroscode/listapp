@@ -26,16 +26,6 @@
         "src": "img/512x512.png",
         "sizes": "512x512",
         "type": "image/png"
-      },
-      {
-        "src": "img/arrow_up.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      },
-      {
-        "src": "img/arrow_down.png",
-        "sizes": "512x512",
-        "type": "image/png"
       }
     ]
   }
