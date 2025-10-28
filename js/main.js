@@ -35,18 +35,6 @@ $(document).ready(function(){
 
 // Functions
 
-function checkedJob(button, index) {
-
-    if (button.is(':checked')) {
-        getData.forEach((element, i) => {
-            if (index == i) {
-                $('.card-body').css('background-color', 'green');
-            }        
-        });
-  }
-}
-
-// Checks if the Localstorage has content. If it's empty it will hide the global button for Deleting All Cards
 function checkForItems() {
     if (localStorage.getItem("listapp") === null) {
         deleteCardsButton.hide();
@@ -68,24 +56,51 @@ function showCards() {
     }
 
     document.querySelectorAll(".cards-details").forEach(info => info.remove());
-    
+    cardsList.innerHTML = ""; // clear before adding new
+
     getData.forEach((element, index) => {
+        // set background if marked as done
+        let bgColor = element.done ? "background-color: #d4edda;" : "";
+
         let createCard = `
         <div class="card cards-details" 
-            style="width: 18rem;" 
-            data-bs-toggle="modal" 
-            data-bs-target="#itemAdd" 
-            onclick="updateCard('${index}', '${element.Title}', '${element.Text}')">
+            style="width: 18rem; ${bgColor}"
+            data-index="${index}">
             <div class="card-body">
                 <span style="display:none" id="'${index}'">'${index}'</span>
                 <h5 class="card-title">${element.Title}</h5>
                 <p class="card-text">${element.Text}</p>
+                <div class="form-check mt-2">
+                    <input class="form-check-input done-checkbox" type="checkbox" id="done-${index}" ${element.done ? "checked" : ""}>
+                    <label class="form-check-label" for="done-${index}">Done</label>
+                    <button class="btn btn-danger" onclick="deleteCard(${index})"> <i class="bi bi-trash-fill"></i></button>
+                </div>
             </div>
         </div>
         `;
         cardsList.innerHTML += createCard;    
     });
 
+    // add click event to all new checkboxes
+    $(".done-checkbox").on("change", function() {
+        let cardIndex = $(this).closest(".card").data("index");
+        let isChecked = $(this).is(":checked");
+        toggleDone(cardIndex, isChecked);
+    });
+}
+
+// Toggle done state, change color and save to localStorage
+function toggleDone(index, doneStatus) {
+    getData[index].done = doneStatus;
+
+    // Update background color immediately
+    const card = document.querySelector(`[data-index='${index}']`);
+    if (card) {
+        card.style.backgroundColor = doneStatus ? "#d4edda" : "";
+    }
+
+    // Save to localStorage
+    localStorage.setItem("listapp", JSON.stringify(getData));
 }
 
 // Delete a single card based on the index retrieved from Localstorage
@@ -144,6 +159,7 @@ itemAddForm.addEventListener('submit', function(e) {
     const information = {
         Title: itemTitle.value,
         Text: itemText.value,
+        done: false // add done status to new items
     }
 
     if (!isEdit) {
